@@ -48,9 +48,9 @@
 
       const showMind = document.querySelector('.show-mind');
       showMind.style.display = 'block';
-
-      //＊＊＊＊＊  スキル・体力終了  ＊＊＊＊＊
     });
+    //＊＊＊＊＊  スキル・体力終了  ＊＊＊＊＊
+
 
     //＊＊＊＊＊      精神開始      ＊＊＊＊＊
     doneMind.addEventListener('click', () => {
@@ -69,9 +69,9 @@
 
       const showCulture = document.querySelector('.show-culture');
       showCulture.style.display = 'block';
-
-      //＊＊＊＊＊      精神終了      ＊＊＊＊＊
     });
+    //＊＊＊＊＊      精神終了      ＊＊＊＊＊
+
 
     //＊＊＊＊＊      文化開始      ＊＊＊＊＊
     doneCulture.addEventListener('click', () => {
@@ -90,11 +90,11 @@
 
       const showSocial = document.querySelector('.show-social');
       showSocial.style.display = 'block';
-
-      //＊＊＊＊＊      文化終了      ＊＊＊＊＊
     });
+    //＊＊＊＊＊      文化終了      ＊＊＊＊＊
 
-    //＊＊＊＊＊      社交開始      ＊＊＊＊＊
+
+    //＊＊＊＊＊      社交と集計開始      ＊＊＊＊＊
     doneSocial.addEventListener('click', () => {
       let arraySocial = getRadioValue('.social');
 
@@ -125,40 +125,54 @@
 
       const showJudgement = document.querySelector('.show-judgement');
       showJudgement.style.display = 'block';
-      //＊＊＊＊＊      社交終了      ＊＊＊＊＊
-    });
 
-    //○○○○○○○○○○○○○   集計終り   ○○○○○○○○○○○○○
+      const bg = document.querySelector('.bg');
+      bg.style.display = 'none';
+
+
+
+    });
+    //＊＊＊＊＊      社交と集計終了      ＊＊＊＊＊
+
   });
+  //○○○○○○○○○○○○○   集計終り   ○○○○○○○○○○○○○
+
 
   //○○○○○○○○○○○○○   判定の関数始め   ○○○○○○○○○○○○○
 
   //＊＊＊＊＊      総合判定開始      ＊＊＊＊＊
 
-
-
   function judgeGround(sumGround) {
     const groundP1 = document.getElementById('groundP1');
     const groundP2 = document.getElementById('groundP2');
+    const bgJudgement = document.getElementById('bgJudgement');
+    bgJudgement.style.paddingTop = '56.25%';
     switch (true) {
       case sumGround >= 80:
+        bgJudgement.style.backgroundImage = 'url(img/hasu.jpg)';
         groundP1.textContent = '貴方は十分過ぎるほど上手くやっていけます。';
         groundP2.textContent = '「人は人、我は我」の境地に達観しており、バイタリティーに溢れ、ベトナムの文化、性格を理解する姿勢を持ち、積極的に社内外にネットワークを広げ続ける、そのままの貴方でいてください。現地採用でも高待遇でオファーされそうですし、駐在員を目指すのもアリです。';
         break;
       case sumGround >= 60:
+        bgJudgement.style.backgroundImage = 'url(img/hochiminh2.jpg)';
         groundP1.textContent = '貴方は多分上手くやっていけます。';
         groundP2.textContent = '完璧なスコアではありませんが、殆どの人がそんなスコアは取れませんので安心してください。私自身も、このカテゴリです。';
         break;
       case sumGround >= 40:
+        bgJudgement.style.backgroundImage = 'url(img/choice.jpg)';
         groundP1.textContent = '一旦、冷却期間を置きましょう。';
         groundP2.textContent = '貴方の今のお気持ちはもしかしたら、ベトナムに現地採用で働きたいのではなく、今の状況を変えたいだけなのかもしれません。';
         break;
       default:
+        bgJudgement.style.backgroundImage = 'url(img/stop.jpg)';
         groundP1.textContent = '悪い事は言いません。日本に居たほうがいいです。';
         groundP2.textContent = '詳細は後でご説明しますが、貴方はベトナム人との相性が悪く、仕事、プライベートの両方で多大なストレスを抱え精神を病んでしまう可能性大です。';
     }
   }
+  //＊＊＊＊＊      総合判定終り      ＊＊＊＊＊
 
+
+  //＊＊＊＊＊      スキル体力判定開始      ＊＊＊＊＊
   function judgeAbility(sumAbility) {
     const abilityP1 = document.getElementById('abilityP1');
     const abilityP2 = document.getElementById('abilityP2');
@@ -180,7 +194,10 @@
         abilityP2.textContent = 'スキル、健康共に不安を抱えた貴方、悪い事は言いません。日本に居た方がいいです。転職エージェントの現地ブログに惑わされる事なく、「現地採用 やめとけ」でググってみてください。概ね本当です。また、ベトナムで大怪我、大病を患った時、どうなるのか、、、合わせてググってみてください。「ベトナムで骨を埋める覚悟」は貴方にありますか？';
     }
   }
+  //＊＊＊＊＊      スキル体力判定終り      ＊＊＊＊＊
 
+
+  //＊＊＊＊＊      精神判定開始      ＊＊＊＊＊
   function judgeMind(sumMind) {
     const mindP1 = document.getElementById('mindP1');
     const mindP2 = document.getElementById('mindP2');
@@ -202,7 +219,10 @@
         mindP2.textContent = '現地採用者が一番考えてはいけないのは駐在員との待遇比較です。貴方は自由意志でベトナムに来たのに対し駐在員は社命で来ております。待遇に差が出るのは当然です。貴方は恐らくこの待遇格差を受け入れる事が出来ません。現地採用になるのはやめましょう。';
     }
   }
+  //＊＊＊＊＊      精神判定終り      ＊＊＊＊＊
 
+
+  //＊＊＊＊＊      文化判定開始      ＊＊＊＊＊
   function judgeCulture(sumCulture) {
     const cultureP1 = document.getElementById('cultureP1');
     const cultureP2 = document.getElementById('cultureP2');
@@ -224,7 +244,10 @@
         cultureP2.textContent = '文化の違いはここに記載した以外にもたくさんあります。これら許容出来ず日本の常識を（無意識かもしれませんが）押しつける貴方はベトナム人にソッポを向かれます。こうなってくると精神を病んでもおかしくありません。';
     }
   }
+  //＊＊＊＊＊      文化判定終り      ＊＊＊＊＊
 
+
+  //＊＊＊＊＊      社交判定開始      ＊＊＊＊＊
   function judgeSocial(sumSocial) {
     const socialP1 = document.getElementById('socialP1');
     const socialP2 = document.getElementById('socialP2');
@@ -246,9 +269,9 @@
         socialP2.textContent = 'まだまだネットからではベトナムの情報を入手機会は少なく、飲み会やサークル等で仲良くなった日本人から入手するものです。また、ベトナム人スタッフから誘われたのに行かないとなりますと、その後の業務に悪い影響が出ます。嫌々ながらも半分は参加するようにしましょう。出来なければベトナムに来るのはやめましょう。';
     }
   }
+  //＊＊＊＊＊      社交判定終り      ＊＊＊＊＊
 
-
-
+  //○○○○○○○○○○○○○   判定の関数終り   ○○○○○○○○○○○○○
 
   //strict終り
 }
